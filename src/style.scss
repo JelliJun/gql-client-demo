@@ -1,0 +1,25 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+.app {
+  @extend .m-2;
+  @extend .mt-4;
+  @extend .container-md;
+}
+.agency {
+  @extend .border;
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .p-2;
+  @extend .m-2;
+  .name, .address, .like, .remove {
+    @extend .d-flex;
+    @extend .align-items-center;
+    @extend .m-2;
+  }
+  .logo {
+    width: 200px;
+    @extend .m-2;
+    img {
+      @extend .img-fluid;
+    }
+  }
+}

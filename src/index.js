@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import App from './App';
+import './style.scss';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -11,6 +12,6 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ApolloProvider client={client}>
-    <App />
+    <App/>
   </ApolloProvider>
 );

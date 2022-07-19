@@ -1,5 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 const GET_AGENCY = gql`
@@ -15,7 +15,7 @@ const GET_AGENCY = gql`
 export default function Agency() {
   const { id } = useParams();
   const [ agency, setAgency ] = useState({});
-  const { data, loading, error } = useQuery(GET_AGENCY, {
+  const { data, loading, error, client } = useQuery(GET_AGENCY, {
     variables: {
       identity: id,
     }
@@ -26,6 +26,7 @@ export default function Agency() {
       setAgency(agency);
     }
   }, [data]);
+
   if (loading) {
     return <h1> Fetching... </h1>
   }
@@ -33,14 +34,21 @@ export default function Agency() {
     return <h1> Failed to fetch </h1>
   }
   return (
-    <div key={agency.identity}>
-      <div>
-        <img src={agency.logoUrl} />
+    <div>
+      <div className='agency' key={agency.identity}>
+        <div className='logo'>
+          <img src={agency.logoUrl} alt={agency.logoUrl} />
+        </div>
+        <div className='name'>
+          {agency.name}
+        </div>
+        <div className='address'>
+          {agency.address}
+        </div>
       </div>
-      <div>
-        {agency.name}
+      <div className='text-end'>
+        <Link className='btn btn-primary' to='/'>Go Back</Link>
       </div>
-      <div>{agency.address}</div>
     </div>
   );
 }
